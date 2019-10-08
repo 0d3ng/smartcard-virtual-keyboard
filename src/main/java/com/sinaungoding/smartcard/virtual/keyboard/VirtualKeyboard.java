@@ -23,9 +23,9 @@ import java.util.logging.Logger;
  * @author od3ng
  */
 public class VirtualKeyboard {
-    
+
     static Logger log = Logger.getLogger(VirtualKeyboard.class.getName());
-    
+
     public static void main(String[] args) {
         try {
             Robot robot = new Robot();
@@ -39,12 +39,13 @@ public class VirtualKeyboard {
                         if (!uid.equals(UID)) {
                             for (char c : uid.toCharArray()) {
                                 robot.keyPress(c);
-                                robot.delay(100);
+                                robot.delay(10);
                                 robot.keyRelease(c);
-                                robot.delay(100);
+                                robot.delay(10);
                             }
                             robot.keyPress(KeyEvent.VK_ENTER);
                         }
+                        UID = uid;
                     } catch (Exception ex) {
                         log.log(Level.SEVERE, ex.getMessage());
                         UID = null;
@@ -56,7 +57,7 @@ public class VirtualKeyboard {
                     }
                 }
             }).start();
-            
+
         } catch (AWTException ex) {
             log.log(Level.SEVERE, ex.getMessage(), ex);
         } catch (Exception ex) {
